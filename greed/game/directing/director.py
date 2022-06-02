@@ -17,6 +17,7 @@ class Director:
         """
         self._keyboard_service = keyboard_service
         self._video_service = video_service
+        self.player_points = 0
 
     def start_game(self, cast):
         """Starts the game using the given cast. Runs the main game loop.
@@ -47,6 +48,34 @@ class Director:
         Args:
             cast (Cast): The cast of actors.
         """
+        banner = cast.get_first_actor("banners")
+        player = cast.get_first_actor("players")
+        gems = cast.get_actors("gems")
+        stones = cast.get_actors("stones")
+
+        banner.set_text("")
+        max_x = self._video_service.get_width()
+        max_y = self._video_service.get_height()
+        player.move_next(max_x, max_y)
+        
+        for gem in gems:
+            for stone in stones:
+                if player.get_position().equals(gem.get_position()):
+                    gem.add_point()
+                    self.player_points += gem.point
+                    banner.set_text(self.player_points)
+                
+                elif player.get_position().equals(stone.get_position()):
+                    stone.subtract_point()
+                    self.player_points -= gem.point
+                    banner.set_text(self.player_points)
+                    
+
+        # for stone in stones:
+            # elif player.get_position().equals(stone.get_position()):
+            #     points = stone.subtract_point()
+            #     banner.set_text(points)
+                
 
     def _do_outputs(self, cast):
         """Draws the actors on the screen.
