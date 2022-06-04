@@ -24,12 +24,7 @@ class Gem(Actor):
     def get_message(self):
         return self._message
 
-    def add_point(self):
-        self.point = 1
-
-        return self.point
-
-    def subtract_point(self):
+    def set_point(self):
         self.point = 1
 
         return self.point

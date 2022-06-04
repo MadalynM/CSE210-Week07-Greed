@@ -1,4 +1,5 @@
 import pyray
+import raylib
 
 
 class VideoService:
@@ -39,11 +40,12 @@ class VideoService:
             actor (Actor): The actor to draw.
         """ 
         text = actor.get_text()
+        points_text = str(text)
         x = actor.get_position().get_x()
         y = actor.get_position().get_y()
         font_size = actor.get_font_size()
         color = actor.get_color().to_tuple()
-        pyray.draw_text(text, x, y, font_size, color)
+        pyray.draw_text(points_text, x, y, font_size, color)
         
     def draw_actors(self, actors):
         """Draws the text for the given list of actors on the screen.

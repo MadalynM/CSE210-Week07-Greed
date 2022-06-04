@@ -59,16 +59,16 @@ class Director:
         player.move_next(max_x, max_y)
         
         for gem in gems:
-            for stone in stones:
                 if player.get_position().equals(gem.get_position()):
-                    gem.add_point()
+                    gem.set_point()
                     self.player_points += gem.point
-                    banner.set_text(self.player_points)
-                
-                elif player.get_position().equals(stone.get_position()):
-                    stone.subtract_point()
-                    self.player_points -= gem.point
-                    banner.set_text(self.player_points)
+        banner.set_text(self.player_points)
+
+        for stone in stones:
+                if player.get_position().equals(stone.get_position()):
+                    stone.set_point()
+                    self.player_points -= stone.point
+        banner.set_text(self.player_points)
                     
 
         # for stone in stones:
