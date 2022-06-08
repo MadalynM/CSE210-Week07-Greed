@@ -4,7 +4,8 @@ from game.shared.color import Color
 from game.casting.cast import Cast
 
 class Gem(Actor):
-    """Responsibility:
+    
+    """Responsibility: provide information of the score to be awarded
 
 
     Attributes:
@@ -12,17 +13,11 @@ class Gem(Actor):
     """
 
     def __init__(self):
+        super().__init__()
+        
         """Constructs a new Gem."""
-        self._message = ""
-        self.point = 0
-
-    def set_message(self, message):
-        self._message = message
-
-        return message
     
-    def get_message(self):
-        return self._message
+        self.point = 0
 
     def add_point(self):
         self.point = 1

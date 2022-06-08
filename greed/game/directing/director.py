@@ -1,3 +1,4 @@
+import  pyray
 class Director:
     """A person who directs the game. 
     
@@ -17,7 +18,10 @@ class Director:
         """
         self._keyboard_service = keyboard_service
         self._video_service = video_service
-        self.player_points = 0
+        self.player_points = 5
+
+        
+        
 
     def start_game(self, cast):
         """Starts the game using the given cast. Runs the main game loop.
@@ -53,22 +57,31 @@ class Director:
         gems = cast.get_actors("gems")
         stones = cast.get_actors("stones")
 
-        banner.set_text("")
+        
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
         player.move_next(max_x, max_y)
+       
+        
+        
         
         for gem in gems:
-            for stone in stones:
-                if player.get_position().equals(gem.get_position()):
-                    gem.add_point()
-                    self.player_points += gem.point
-                    banner.set_text(self.player_points)
+             gem.move_next(max_x, max_y)
+             if player.get_position().equals(gem.get_position()):
+                 gem.add_point()
+                 self.player_points +=1
+                 banner.set_text(f"Score: {self.player_points}")
+                 cast.remove_actor("gems", gem)
+                 
                 
-                elif player.get_position().equals(stone.get_position()):
-                    stone.subtract_point()
-                    self.player_points -= gem.point
-                    banner.set_text(self.player_points)
+        for stone in stones:
+               
+            stone.move_next(max_x, max_y)
+            if player.get_position().equals(stone.get_position()):
+                stone.subtract_point()
+                self.player_points -= 1
+                banner.set_text(f"Score: {self.player_points}")
+                cast.remove_actor('stones', stone)
                     
 
         # for stone in stones:
@@ -85,5 +98,6 @@ class Director:
         """
         self._video_service.clear_buffer()
         actors = cast.get_all_actors()
+        
         self._video_service.draw_actors(actors)
         self._video_service.flush_buffer()

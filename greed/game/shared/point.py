@@ -43,6 +43,8 @@ class Point:
         """
         return self._x == other.get_x() and self._y == other.get_y()
 
+    
+
     def get_x(self):
         """Gets the horizontal distance.
         
