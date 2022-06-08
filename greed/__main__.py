@@ -34,7 +34,7 @@ def main():
     
     # create the banner
     banner = Actor()
-    banner.set_text("")
+    banner.set_text("Score: 5")
     banner.set_font_size(FONT_SIZE)
     banner.set_color(WHITE)
     banner.set_position(Point(CELL_SIZE, 0))
@@ -42,8 +42,9 @@ def main():
     
     # create the player
     x = int(MAX_X / 2)
-    y = int(MAX_Y / 2)
+    y = int(MAX_Y - 50)
     position = Point(x, y)
+
 
     player = Actor()
     player.set_text("#")
@@ -61,8 +62,8 @@ def main():
         # text = chr(random.randint(33, 126))
         # message = messages[n]
 
-        x = random.randint(1, COLS - 1)
-        y = random.randint(1, ROWS - 1)
+        x = random.randint(0, COLS - 1)
+        y = random.randint(0, ROWS -10)
         position = Point(x, y)
         position = position.scale(CELL_SIZE)
 
@@ -70,14 +71,22 @@ def main():
         g = random.randint(0, 255)
         b = random.randint(0, 255)
         color = Color(r, g, b)
+        dx = 0#variable for velocity
+        dy = 1
+        velocity = Point(dx, dy)#setting velocity
         
         gem = Gem()
         gem.set_text("*")
         gem.set_font_size(FONT_SIZE)
         gem.set_color(color)
         gem.set_position(position)
+        gem.set_velocity(velocity)
         # gem.set_message(message)
         cast.add_actor("gems", gem)
+    
+        
+        
+        
 
     # create the stones
     # with open(DATA_PATH) as file:
@@ -88,10 +97,15 @@ def main():
         # text = chr(random.randint(33, 126))
         # message = messages[n]
 
-        x = random.randint(1, COLS - 1)
-        y = random.randint(1, ROWS - 1)
+        x = random.randint(0, COLS - 1)
+        y = random.randint(0, ROWS -10)
+        dx = 0#variable for velocity
+        dy = 1
         position = Point(x, y)
         position = position.scale(CELL_SIZE)
+        velocity = Point(dx, dy)#setting velocity
+        
+        
 
         r = random.randint(0, 255)
         g = random.randint(0, 255)
@@ -103,8 +117,10 @@ def main():
         stone.set_font_size(FONT_SIZE)
         stone.set_color(color)
         stone.set_position(position)
+        stone.set_velocity(velocity)
         # stone.set_message(message)
         cast.add_actor("stones", stone)
+        
     
     # start the game
     keyboard_service = KeyboardService(CELL_SIZE)
