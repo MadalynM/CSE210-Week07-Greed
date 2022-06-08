@@ -22,7 +22,6 @@ FONT_SIZE = 15
 COLS = 60
 ROWS = 40
 CAPTION = "Greed"
-# DATA_PATH = os.path.dirname(os.path.abspath(__file__)) + "/data/messages.txt"
 WHITE = Color(255, 255, 255)
 DEFAULT_GEMS = 40
 
@@ -34,7 +33,7 @@ def main():
     
     # create the banner
     banner = Actor()
-    banner.set_text("Score: 5")
+    banner.set_text("Score: 0")
     banner.set_font_size(FONT_SIZE)
     banner.set_color(WHITE)
     banner.set_position(Point(CELL_SIZE, 0))
@@ -54,13 +53,8 @@ def main():
     cast.add_actor("players", player)
     
     # create the gems
-    # with open(DATA_PATH) as file:
-    #     data = file.read()
-    #     messages = data.splitlines()
 
     for n in range(DEFAULT_GEMS):
-        # text = chr(random.randint(33, 126))
-        # message = messages[n]
 
         x = random.randint(0, COLS - 1)
         y = random.randint(0, ROWS -10)
@@ -81,7 +75,6 @@ def main():
         gem.set_color(color)
         gem.set_position(position)
         gem.set_velocity(velocity)
-        # gem.set_message(message)
         cast.add_actor("gems", gem)
     
         
@@ -89,13 +82,8 @@ def main():
         
 
     # create the stones
-    # with open(DATA_PATH) as file:
-    #     data = file.read()
-    #     messages = data.splitlines()
 
     for n in range(DEFAULT_GEMS):
-        # text = chr(random.randint(33, 126))
-        # message = messages[n]
 
         x = random.randint(0, COLS - 1)
         y = random.randint(0, ROWS -10)
@@ -118,7 +106,6 @@ def main():
         stone.set_color(color)
         stone.set_position(position)
         stone.set_velocity(velocity)
-        # stone.set_message(message)
         cast.add_actor("stones", stone)
         
     

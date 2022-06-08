@@ -1,7 +1,4 @@
 from game.casting.actor import Actor
-from game.shared.point import Point
-from game.shared.color import Color
-from game.casting.cast import Cast
 
 class Gem(Actor):
     
@@ -20,11 +17,6 @@ class Gem(Actor):
         self.point = 0
 
     def add_point(self):
-        self.point = 1
-
-        return self.point
-
-    def subtract_point(self):
         self.point = 1
 
         return self.point

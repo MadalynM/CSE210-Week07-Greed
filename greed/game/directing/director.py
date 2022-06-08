@@ -18,7 +18,7 @@ class Director:
         """
         self._keyboard_service = keyboard_service
         self._video_service = video_service
-        self.player_points = 5
+        self.player_points = 0
 
         
         
@@ -78,16 +78,11 @@ class Director:
                
             stone.move_next(max_x, max_y)
             if player.get_position().equals(stone.get_position()):
-                stone.subtract_point()
+                stone.add_point()
                 self.player_points -= 1
                 banner.set_text(f"Score: {self.player_points}")
                 cast.remove_actor('stones', stone)
                     
-
-        # for stone in stones:
-            # elif player.get_position().equals(stone.get_position()):
-            #     points = stone.subtract_point()
-            #     banner.set_text(points)
                 
 
     def _do_outputs(self, cast):
